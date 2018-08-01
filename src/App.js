@@ -1,12 +1,44 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
+import Home from './containers/Home';
+import About from './containers/About';
+import Contact from './containers/Contact';
 
 class App extends Component {
+  state = {
+    page: 'home'
+  };
+
+  keHome = halaman => {
+    this.setState({
+      page: halaman
+    });
+  };
   render() {
     return (
       <div className="App">
-        <Header nama="Peringkat Kelas" />
-        <Counter />
+        {this.state.page == 'home' && <Home />}
+        {this.state.page == 'about' && <About />}
+        {this.state.page == 'contact' && <Contact />}
+
+        <button
+          onClick={() => {
+            this.keHome('home');
+          }}>
+          home
+        </button>
+        <button
+          onClick={() => {
+            this.keHome('about');
+          }}>
+          about
+        </button>
+        <button
+          onClick={() => {
+            this.keHome('contact');
+          }}>
+          contact
+        </button>
       </div>
     );
   }
